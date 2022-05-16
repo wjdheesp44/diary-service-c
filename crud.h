@@ -29,7 +29,7 @@ int crud(int crudNum) {
 		break;
 	
 	default:
-		printf("¹øÈ£¸¦ Á¦´ë·Î ÀÔ·ÂÇØÁÖ¼¼¿ä:"); 
+		printf("ë²ˆí˜¸ë¥¼ ì œëŒ€ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”:"); 
 		int recordNum;
 		scanf("%d", &recordNum);
 		crud(recordNum);
@@ -37,26 +37,26 @@ int crud(int crudNum) {
 }
 
 
-// ±â·Ï »ı¼º
+// ê¸°ë¡ ìƒì„±
 int recordCreat(void) {
 
 	return 0;
 }
 
 
-// ±â·Ï ÀĞ±â
+// ê¸°ë¡ ì½ê¸°
 int recordRead(void) {
 	return 0;
 }
 
 
-// ±â·Ï ¼öÁ¤
+// ê¸°ë¡ ìˆ˜ì •
 int recordUpdate(void) {
 	return 0;
 }
 
 
-// ±â·Ï »èÁ¦
+// ê¸°ë¡ ì‚­ì œ
 int recordDelete(void) {
 	return 0;
 }
