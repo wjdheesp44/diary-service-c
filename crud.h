@@ -13,73 +13,84 @@ int recordDelete(void);
 int crud(int crudNum) {
 
 
-	switch (crudNum) {
-	case 1:
-		recordCreat();
-		break;
-	case 2:
-		recordRead();
-		break;
-	case 3:
-		recordUpdate();
-		break;
-	case 4:
-		recordDelete();
-		break;
+		switch (crudNum) {
+		case 1:
+			recordCreat();
+			break;
+		case 2:
+			recordRead();
+			break;
+		case 3:
+			recordUpdate();
+			break;
+		case 4:
+			recordDelete();
+			break;
 
-	default:
-		printf("ë²ˆí˜¸ë¥¼ ì œëŒ€ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”:");
-		static int recordNum;
-		scanf_s("%d", &recordNum);
-		crud(recordNum);
-	}
-
+		default:
+			printf("¹øÈ£¸¦ Á¦´ë·Î ÀÔ·ÂÇØÁÖ¼¼¿ä:");
+			static int recordNum;
+			scanf_s("%d", &recordNum);
+			crud(recordNum);
+		}
+	
 }
 
 
-// ê¸°ë¡ ìƒì„±
-int recordCreat(void)  // ë¬¸ìì—´ì„ ì…ë ¥ ë°›ì•„ test.txtíŒŒì¼ì„ ìƒì„±, ì“°ê¸°ë¥¼ ì‹¤í–‰í•œë‹¤
+// ±â·Ï »ı¼º
+int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½ÇÇàÇÑ´Ù
 {
-	printf("ê¸°ë¡í•  ë‚´ìš©ì„ ì…ë ¥í•˜ì‹œì˜¤ : \n");
 	FILE* write;
 	char str[1000];
-	write = fopen("test.txt", "w");
-	scanf("%s", &str);
+	char filename[15];
+	printf("Today\'s Date [yyyy-mm-dd]: ");
+	fflush(stdin);
+	scanf("%s", &filename); 
+	strcat(filename, ".txt");
+	write = fopen(filename, "a+"); 
+
+	printf("±â·ÏÇÒ ³»¿ëÀ» ÀÔ·ÂÇÏ½Ã¿À(Á¾·áÇÏ·Á¸é Enter ÈÄ Ctrl + z ÀÔ·Â ÈÄ ´Ù½Ã Enter) : \n");
+	while (fgets(str, sizeof(str), stdin) != NULL);
 	fputs(str, write);
 
 	fclose(write);
 	return 0;
 }
 
+	
 
 
-// ê¸°ë¡ ì½ê¸°
-int recordRead(void) // test.txtíŒŒì¼ì˜ ê¸€ìë¥¼ ìˆœì„œëŒ€ë¡œ ë„íŠ¸ì°½ì— ì¶œë ¥í•œë‹¤.
+// ±â·Ï ÀĞ±â
+int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyy-mm-dd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿¡ Ãâ·ÂÇÑ´Ù.
 {
+	FILE* read;
 	char line[1000];
+	char line2[1000];
+	char filename[15];
+	printf("Diary's Date [yyyy-mm-dd]: ");
+	scanf("%s", filename);
+	strcat(filename, ".txt");
+	read = fopen(filename, "r");
+	fflush(stdin);
 
-	FILE* read = fopen("test.txt", "r");
-	if (read == NULL) {
-		printf("íŒŒì¼ì—´ê¸° ì‹¤íŒ¨\n");
-		return 1;
-	}
-
-	while (fgets(line, sizeof(line), read) != NULL) {
+	while (fgets(line, 500, read) != NULL) {
+		sscanf(line, "%[^\n]", line2);
 		printf("%s", line);
-	}
 
-	fclose(read);
-	return 0;
+
+		fclose(read);
+		return 0;
+	}
 }
 
 
-// ê¸°ë¡ ìˆ˜ì •
+// ±â·Ï ¼öÁ¤
 int recordUpdate(void) {
 
 }
 
 
-// ê¸°ë¡ ì‚­ì œ
+// ±â·Ï »èÁ¦
 int recordDelete(void) {
 
 }
