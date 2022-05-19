@@ -32,18 +32,19 @@ int crud(int crudNum) {
 			static int recordNum;
 			scanf_s("%d", &recordNum);
 			crud(recordNum);
+			break;
 		}
-	
 }
 
 
 // ±â·Ï »ý¼º
 int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Þ¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ý¼º, ¾²±â¸¦ ½ÇÇàÇÑ´Ù
 {
-	FILE* write;
+	FILE* write; 
 	char str[1000];
 	char filename[15];
-	printf("Today\'s Date [yyyy-mm-dd]: ");
+	int i = 0;
+	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyy-mm-dd]: ");
 	fflush(stdin);
 	scanf("%s", &filename); 
 	strcat(filename, ".txt");
@@ -53,11 +54,35 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Þ¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ý¼º, ¾²±â¸¦ ½
 	while (fgets(str, sizeof(str), stdin) != NULL);
 	fputs(str, write);
 
-	fclose(write);
-	return 0;
-}
-
 	
+	printf("¶Ç ´Ù¸¥ ³¯À» ±â·ÏÇÏ°í ½Í³ª¿ä? ( ³× = 1 or ¾Æ´Ï¿À = 0 )");
+	
+	i++;
+
+	while (i >= 0) {
+		int yn;
+		scanf("%d", &yn);
+		if (yn == 0) {
+			break;
+		}
+		if (yn == 1) {
+			FILE* write; 
+			char str[1000];
+			char filename[15];
+			printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyy-mm-dd]: ");
+			fflush(stdin);
+			scanf("%s", &filename);
+			strcat(filename, ".txt");
+			write = fopen(filename, "a+");
+
+			printf("±â·ÏÇÒ ³»¿ëÀ» ÀÔ·ÂÇÏ½Ã¿À(Á¾·áÇÏ·Á¸é Enter ÈÄ Ctrl + z ÀÔ·Â ÈÄ ´Ù½Ã Enter) : \n");
+			while (fgets(str, sizeof(str), stdin) != NULL);
+			fputs(str, write);
+			break;
+		}
+	}
+	fclose(write);
+}
 
 
 // ±â·Ï ÀÐ±â
@@ -67,7 +92,8 @@ int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyy-mm-dd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿
 	char line[1000];
 	char line2[1000];
 	char filename[15];
-	printf("Diary's Date [yyyy-mm-dd]: ");
+	int i = 0;
+	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyy-mm-dd]: ");
 	scanf("%s", filename);
 	strcat(filename, ".txt");
 	read = fopen(filename, "r");
@@ -76,11 +102,36 @@ int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyy-mm-dd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿
 	while (fgets(line, 500, read) != NULL) {
 		sscanf(line, "%[^\n]", line2);
 		printf("%s", line);
-
-
-		fclose(read);
-		return 0;
 	}
+
+	printf("¶Ç ´Ù¸¥ ³¯ÀÇ ±â·ÏÀ» ÀÐ°í½Í³ª¿ä? ( ³× = 1 or ¾Æ´Ï¿À = 0 )");
+	i++;
+
+	while (i >= 0) {
+		int yn = 0;
+		scanf("%d", &yn);
+		if (yn == 0) {
+			break;
+		}
+		if (yn == 1) {
+			FILE* read;
+			char line[1000];
+			char line2[1000];
+			char filename[15];
+			printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyy-mm-dd]: ");
+			scanf("%s", filename);
+			strcat(filename, ".txt");
+			read = fopen(filename, "r");
+			fflush(stdin);
+
+			while (fgets(line, 500, read) != NULL) {
+				sscanf(line, "%[^\n]", line2);
+				printf("%s", line);
+			}
+			break;
+		}
+	}
+		fclose(read);
 }
 
 
