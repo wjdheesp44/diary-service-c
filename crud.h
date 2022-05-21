@@ -12,28 +12,30 @@ int recordDelete(void);
 
 int crud(int crudNum) {
 
+	
+	switch (crudNum) {
+	case 0:
+		exit(0);
+	case 1:
+		recordCreat();
+		break;
+	case 2:
+		recordRead();
+		break;
+	case 3:
+		recordUpdate();
+		break;
+	case 4:
+		recordDelete();
+		break;
 
-		switch (crudNum) {
-		case 1:
-			recordCreat();
-			break;
-		case 2:
-			recordRead();
-			break;
-		case 3:
-			recordUpdate();
-			break;
-		case 4:
-			recordDelete();
-			break;
-
-		default:
-			printf("번호를 제대로 입력해주세요:");
-			static int recordNum;
-			scanf_s("%d", &recordNum);
-			crud(recordNum);
-			break;
-		}
+	default:
+		printf("번호를 제대로 입력해주세요:");
+		static int recordNum;
+		scanf_s("%d", &recordNum);
+		crud(recordNum);
+		break;
+	}
 }
 
 
@@ -142,8 +144,56 @@ int recordUpdate(void) {
 
 
 // 기록 삭제
-int recordDelete(void) {
+int recordDelete(void) {   // 삭제를 원하는 파일의 날짜를 yyyy-mm-dd 형식으로 받아 삭제 한다.
 
+	printf("삭제하고 싶은 파일 yyyy-mm-dd로 입력하시오 : ");
+	char filename[15];
+	int i = 0;
+
+	scanf("%s", filename);
+	strcat(filename, ".txt");
+
+	int nResult = remove(filename);
+
+	if (nResult == 0)
+	{
+		printf("기록 삭제 성공 \n");
+	}
+	else if (nResult == -1)
+	{
+		perror("기록 삭제 실패  \n");
+	}
+
+	i++;
+	printf("또 다른 날의 기록을 삭제하고싶나요? ( 네 = 1 or 아니오 = 0 )");
+	while (i >= 0)
+	{
+		int yn = 0;
+		scanf("%d", &yn);
+		if (yn == 0) {
+			break;
+		}
+		if (yn == 1) {
+			printf("삭제하고 싶은 파일 yyyy-mm-dd로 입력하시오 : ");
+			char filename[15];
+			int i = 0;
+
+			scanf("%s", filename);
+			strcat(filename, ".txt");
+
+			int nResult = remove(filename);
+
+			if (nResult == 0)
+			{
+				printf("기록 삭제 성공 \n");
+			}
+			else if (nResult == -1)
+			{
+				perror("기록 삭제 실패  \n");
+			}
+			break;
+		}
+	}
 }
 
 #endif
