@@ -1,6 +1,7 @@
 #ifndef __CRUD_H__
 # define __CRUD_H__
 #include <stdio.h>
+#include <time.h>
 #include "callendar.h"
 
 int recordCreat(void);
@@ -42,22 +43,30 @@ int crud(int crudNum) {
 // 기록 생성
 int recordCreat(void)  // 문자열을 입력 받아 yyyy-mm-dd.txt파일을 생성, 쓰기를 실행한다
 {
-	FILE* write; 
 	char str[1000];
 	char filename[15];
 	int i = 0;
+	float t;
+	FILE* write; 
+
 	printf("원하는 년, 월, 일을 입력하시오 [yyyy-mm-dd]: ");
 	fflush(stdin);
 	scanf("%s", &filename); 
 	strcat(filename, ".txt");
 	write = fopen(filename, "a+"); 
 
+	t = clock();
+
 	printf("기록할 내용을 입력하시오(종료하려면 Enter 후 Ctrl + z 입력 후 다시 Enter) : \n");
 	while (fgets(str, sizeof(str), stdin) != NULL);
 	fputs(str, write);
-
 	
-	printf("또 다른 날을 기록하고 싶나요? ( 네 = 1 or 아니오 = 0 )");
+	t = clock() - t;
+	t /= 1000;
+	printf("%.f초 %d초", t / 60, (int)t % 60);
+	fprintf(write, "%.f분 %d초", t / 60, (int)t % 60);
+	
+	printf("\n또 다른 날을 기록하고 싶나요? ( 네 = 1 or 아니오 = 0 )");
 	
 	i++;
 
@@ -68,18 +77,28 @@ int recordCreat(void)  // 문자열을 입력 받아 yyyy-mm-dd.txt파일을 생성, 쓰기를 �
 			break;
 		}
 		if (yn == 1) {
-			FILE* write; 
 			char str[1000];
 			char filename[15];
+			FILE* write; 
+			float t;
+
+
 			printf("원하는 년, 월, 일을 입력하시오 [yyyy-mm-dd]: ");
 			fflush(stdin);
 			scanf("%s", &filename);
 			strcat(filename, ".txt");
 			write = fopen(filename, "a+");
 
+			t = clock();
+
 			printf("기록할 내용을 입력하시오(종료하려면 Enter 후 Ctrl + z 입력 후 다시 Enter) : \n");
 			while (fgets(str, sizeof(str), stdin) != NULL);
 			fputs(str, write);
+
+			t = clock() - t;
+			t /= 1000;
+			printf("%.f초 %d초", t / 60, (int)t % 60);
+			fprintf(write, "%.f분 %d초", t / 60, (int)t % 60);
 			break;
 		}
 	}

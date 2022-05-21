@@ -4,6 +4,8 @@
 # define __CALLENDAR_H__
 #include "crud.h"
 #include <stdio.h>
+#include <time.h>
+#include <windows.h> // Sleep 함수를 사용하기위해 사용
 
 
 //함수의 원형
