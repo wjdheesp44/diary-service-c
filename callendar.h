@@ -1,14 +1,14 @@
-//callendar.h  ´Ş·Â ±¸Çö
+ï»¿//callendar.h  ë‹¬ë ¥ êµ¬í˜„
 
 #ifndef __CALLENDAR_H__
 # define __CALLENDAR_H__
 #include "crud.h"
 #include <stdio.h>
 #include <time.h>
-#include <windows.h> // Sleep ÇÔ¼ö¸¦ »ç¿ëÇÏ±âÀ§ÇØ »ç¿ë
+#include <windows.h> // Sleep í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ê¸°ìœ„í•´ ì‚¬ìš©
 
 
-//ÇÔ¼öÀÇ ¿øÇü
+//í•¨ìˆ˜ì˜ ì›í˜•
 
 void printMonth(int year, int month);
 void printMonthTitle(int year, int month);
@@ -20,14 +20,14 @@ int numberOfDaysInMonth(int year, int month);
 int leapYear(int year);
 
 
-//year¿Í month¸¦ Àü´Ş ¹Ş¾Æ ÇØ´ç ¿ùÀ» Ãâ·Â : title -> ¿äÀÏ±îÁö, body -> ³¯Â¥ 
+//yearì™€ monthë¥¼ ì „ë‹¬ ë°›ì•„ í•´ë‹¹ ì›”ì„ ì¶œë ¥ : title -> ìš”ì¼ê¹Œì§€, body -> ë‚ ì§œ 
 void printMonth(int year, int month) {
 	printMonthTitle(year, month);
 	printMonthBody(year, month);
 }
 
 
-//¿ù°ú ³âµµ¸¦ Ãâ·Â
+//ì›”ê³¼ ë…„ë„ë¥¼ ì¶œë ¥
 void printMonthTitle(int year, int month) {
 	printf(" %d%18d ", year, month);
 	printMonthName(month);
@@ -36,7 +36,7 @@ void printMonthTitle(int year, int month) {
 }
 
 
-//month¸¦ Àü´Ş ¹Ş¾Æ ÇØ´ç ´ŞÀÇ ¿µ¾î ÀÌ¸§À» Ãâ·Â
+//monthë¥¼ ì „ë‹¬ ë°›ì•„ í•´ë‹¹ ë‹¬ì˜ ì˜ì–´ ì´ë¦„ì„ ì¶œë ¥
 void printMonthName(int month) {
 	char* printMonthName[13] = {0, "January", "February","March","April","May","June","July","August","September","October","November","December"};
 	
@@ -44,20 +44,20 @@ void printMonthName(int month) {
 }
 
 
-//year¿Í month¸¦ Àü´Ş ¹Ş¾Æ ¿äÀÏ°ú ÀÏÀ» Ãâ·Â
+//yearì™€ monthë¥¼ ì „ë‹¬ ë°›ì•„ ìš”ì¼ê³¼ ì¼ì„ ì¶œë ¥
 void printMonthBody(int year, int month) {
 	int startday = startDay(year, month);
 	int numberofdaysinmonth = numberOfDaysInMonth(year, month);
 
-	for (int i = 0; i < startday; i++) printf("      ");		// ÇØ´ç ´ŞÀÇ ½ÃÀÛ ÀÏ 
-	for (int i = 1; i <= numberofdaysinmonth; i++) {	// ³¯Â¥ Ãâ·Â ÈÄ ÇÑ ÁÖ ³Ñ±â±â
+	for (int i = 0; i < startday; i++) printf("      ");		// í•´ë‹¹ ë‹¬ì˜ ì‹œì‘ ì¼ 
+	for (int i = 1; i <= numberofdaysinmonth; i++) {	// ë‚ ì§œ ì¶œë ¥ í›„ í•œ ì£¼ ë„˜ê¸°ê¸°
 		printf("%6d", i);
 		if ((i + startday) % 7 == 0) printf("\n");
 	}
 }
 
 
-// ÇØ´ç ¿ùÀÇ ½ÃÀÛÇÏ´Â ³¯ÀÌ ¹«½¼ ¿äÀÏÀÎÁö Ã£´Â ÇÔ¼ö
+// í•´ë‹¹ ì›”ì˜ ì‹œì‘í•˜ëŠ” ë‚ ì´ ë¬´ìŠ¨ ìš”ì¼ì¸ì§€ ì°¾ëŠ” í•¨ìˆ˜
 int startDay(int year, int month) {
 	int startday1800 = 3;
 	int totalnumberofdays = totalDates(year, month);
@@ -65,7 +65,7 @@ int startDay(int year, int month) {
 }
 
 
-// 1800³â 1¿ù 1ÀÏ ºÎÅÍ ÇØ´ç ´Ş±îÁö ÃÑ ¸çÄ¥ÀÌ µÇ´ÂÁö °è»ê
+// 1800ë…„ 1ì›” 1ì¼ ë¶€í„° í•´ë‹¹ ë‹¬ê¹Œì§€ ì´ ë©°ì¹ ì´ ë˜ëŠ”ì§€ ê³„ì‚°
 int totalDates(int year, int month) {
 	int total = 0;
 	for (int i = 1800; i < year; i++) {
@@ -80,7 +80,7 @@ int totalDates(int year, int month) {
 }
 
 
-//year¿Í month¸¦ Àü´Ş ¹Ş¾Æ ÇØ´ç ´Ş¿¡ ¸îÀÏÀÌ ÀÖ´ÂÁö
+//yearì™€ monthë¥¼ ì „ë‹¬ ë°›ì•„ í•´ë‹¹ ë‹¬ì— ëª‡ì¼ì´ ìˆëŠ”ì§€
 int numberOfDaysInMonth(int year, int month) {
 	int monthdate[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -93,7 +93,7 @@ int numberOfDaysInMonth(int year, int month) {
 }
 
 
-//year¸¦ Àü´Ş¹Ş¾Æ À±³âÀÎÁö È®ÀÎ
+//yearë¥¼ ì „ë‹¬ë°›ì•„ ìœ¤ë…„ì¸ì§€ í™•ì¸
 int leapYear(int year) {
 	if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) return 1;
 	else	return 0;
@@ -102,14 +102,14 @@ int leapYear(int year) {
 
 int callendar(void) {
 	
-		// 1. ´ÙÀÌ¾î¸® ÆäÀÌÁö
+		// 1. ë‹¤ì´ì–´ë¦¬ í˜ì´ì§€
 
 		int year, month;
-		// ¿¬µµ ÀÔ·Â
+		// ì—°ë„ ì…ë ¥
 		printf("year : ");
 		scanf("%d", &year);
 
-		// ¿ù ÀÔ·Â
+		// ì›” ì…ë ¥
 		printf("month : ");
 		scanf("%d", &month);
 		printf("\n");
@@ -117,12 +117,12 @@ int callendar(void) {
 		printMonth(year, month);
 		printf("\n\n");
 
-		// ´ÙÀÌ¾î¸®¿¡ ±â·Ï
+		// ë‹¤ì´ì–´ë¦¬ì— ê¸°ë¡
 		int ch;
 		while ((ch = getchar()) != EOF)
 		{
 			int recordNum;
-			printf("  0. Á¾·á 1. ±â·Ï »ı¼º 2. ±â·Ï ÀĞ±â 3. ±â·Ï ¼öÁ¤ 4. ±â·Ï »èÁ¦ \n\n  ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+			printf("  0. ì¢…ë£Œ 1. ê¸°ë¡ ìƒì„± 2. ê¸°ë¡ ì½ê¸° 3. ê¸°ë¡ ìˆ˜ì • 4. ê¸°ë¡ ì‚­ì œ \n\n  ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
 			scanf("%d", &recordNum);
 			crud(recordNum);
 		}

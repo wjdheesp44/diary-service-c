@@ -1,4 +1,4 @@
-#ifndef __CRUD_H__
+ï»¿#ifndef __CRUD_H__
 # define __CRUD_H__
 #include <stdio.h>
 #include <time.h>
@@ -31,7 +31,7 @@ int crud(int crudNum) {
 		break;
 
 	default:
-		printf("¹øÈ£¸¦ Á¦´ë·Î ÀÔ·ÂÇØÁÖ¼¼¿ä:");
+		printf("ë²ˆí˜¸ë¥¼ ì œëŒ€ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”:");
 		static int recordNum;
 		scanf_s("%d", &recordNum);
 		crud(recordNum);
@@ -40,8 +40,8 @@ int crud(int crudNum) {
 }
 
 
-// ±â·Ï »ı¼º
-int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½ÇÇàÇÑ´Ù
+// ê¸°ë¡ ìƒì„±
+int recordCreat(void)  // ë¬¸ìì—´ì„ ì…ë ¥ ë°›ì•„ yyyy-mm-dd.txtíŒŒì¼ì„ ìƒì„±, ì“°ê¸°ë¥¼ ì‹¤í–‰í•œë‹¤
 {
 	char str[1000];
 	char filename[15];
@@ -49,7 +49,7 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½
 	float t;
 	FILE* write; 
 
-	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyy-mm-dd]: ");
+	printf("ì›í•˜ëŠ” ë…„, ì›”, ì¼ì„ ì…ë ¥í•˜ì‹œì˜¤ [yyyy-mm-dd]: ");
 	fflush(stdin);
 	scanf("%s", &filename); 
 	strcat(filename, ".txt");
@@ -57,16 +57,16 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½
 
 	t = clock();
 
-	printf("±â·ÏÇÒ ³»¿ëÀ» ÀÔ·ÂÇÏ½Ã¿À(Á¾·áÇÏ·Á¸é Enter ÈÄ Ctrl + z ÀÔ·Â ÈÄ ´Ù½Ã Enter) : \n");
+	printf("ê¸°ë¡í•  ë‚´ìš©ì„ ì…ë ¥í•˜ì‹œì˜¤(ì¢…ë£Œí•˜ë ¤ë©´ Enter í›„ Ctrl + z ì…ë ¥ í›„ ë‹¤ì‹œ Enter) : \n");
 	while (fgets(str, sizeof(str), stdin) != NULL);
 	fputs(str, write);
 	
 	t = clock() - t;
 	t /= 1000;
-	printf("%.fÃÊ %dÃÊ", t / 60, (int)t % 60);
-	fprintf(write, "%.fºĞ %dÃÊ", t / 60, (int)t % 60);
+	printf("%.fì´ˆ %dì´ˆ", t / 60, (int)t % 60);
+	fprintf(write, "%.fë¶„ %dì´ˆ", t / 60, (int)t % 60);
 	
-	printf("\n¶Ç ´Ù¸¥ ³¯À» ±â·ÏÇÏ°í ½Í³ª¿ä? ( ³× = 1 or ¾Æ´Ï¿À = 0 )");
+	printf("\në˜ ë‹¤ë¥¸ ë‚ ì„ ê¸°ë¡í•˜ê³  ì‹¶ë‚˜ìš”? ( ë„¤ = 1 or ì•„ë‹ˆì˜¤ = 0 )");
 	
 	i++;
 
@@ -83,7 +83,7 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½
 			float t;
 
 
-			printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyy-mm-dd]: ");
+			printf("ì›í•˜ëŠ” ë…„, ì›”, ì¼ì„ ì…ë ¥í•˜ì‹œì˜¤ [yyyy-mm-dd]: ");
 			fflush(stdin);
 			scanf("%s", &filename);
 			strcat(filename, ".txt");
@@ -91,14 +91,14 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½
 
 			t = clock();
 
-			printf("±â·ÏÇÒ ³»¿ëÀ» ÀÔ·ÂÇÏ½Ã¿À(Á¾·áÇÏ·Á¸é Enter ÈÄ Ctrl + z ÀÔ·Â ÈÄ ´Ù½Ã Enter) : \n");
+			printf("ê¸°ë¡í•  ë‚´ìš©ì„ ì…ë ¥í•˜ì‹œì˜¤(ì¢…ë£Œí•˜ë ¤ë©´ Enter í›„ Ctrl + z ì…ë ¥ í›„ ë‹¤ì‹œ Enter) : \n");
 			while (fgets(str, sizeof(str), stdin) != NULL);
 			fputs(str, write);
 
 			t = clock() - t;
 			t /= 1000;
-			printf("%.fÃÊ %dÃÊ", t / 60, (int)t % 60);
-			fprintf(write, "%.fºĞ %dÃÊ", t / 60, (int)t % 60);
+			printf("%.fì´ˆ %dì´ˆ", t / 60, (int)t % 60);
+			fprintf(write, "%.fë¶„ %dì´ˆ", t / 60, (int)t % 60);
 			break;
 		}
 	}
@@ -106,15 +106,15 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½
 }
 
 
-// ±â·Ï ÀĞ±â
-int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyy-mm-dd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿¡ Ãâ·ÂÇÑ´Ù.
+// ê¸°ë¡ ì½ê¸°
+int recordRead(void) // ì…ë ¥ëœ ë‚ ì§œ yyyy-mm-dd.txtíŒŒì¼ì˜ ê¸€ìë¥¼ ìˆœì„œëŒ€ë¡œ ë„íŠ¸ì°½ì— ì¶œë ¥í•œë‹¤.
 {
 	FILE* read;
 	char line[1000];
 	char line2[1000];
 	char filename[15];
 	int i = 0;
-	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyy-mm-dd]: ");
+	printf("ì›í•˜ëŠ” ë…„, ì›”, ì¼ì„ ì…ë ¥í•˜ì‹œì˜¤ [yyyy-mm-dd]: ");
 	scanf("%s", filename);
 	strcat(filename, ".txt");
 	read = fopen(filename, "r");
@@ -125,7 +125,7 @@ int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyy-mm-dd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿
 		printf("%s", line);
 	}
 
-	printf("¶Ç ´Ù¸¥ ³¯ÀÇ ±â·ÏÀ» ÀĞ°í½Í³ª¿ä? ( ³× = 1 or ¾Æ´Ï¿À = 0 )");
+	printf("ë˜ ë‹¤ë¥¸ ë‚ ì˜ ê¸°ë¡ì„ ì½ê³ ì‹¶ë‚˜ìš”? ( ë„¤ = 1 or ì•„ë‹ˆì˜¤ = 0 )");
 	i++;
 
 	while (i >= 0) {
@@ -139,7 +139,7 @@ int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyy-mm-dd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿
 			char line[1000];
 			char line2[1000];
 			char filename[15];
-			printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyy-mm-dd]: ");
+			printf("ì›í•˜ëŠ” ë…„, ì›”, ì¼ì„ ì…ë ¥í•˜ì‹œì˜¤ [yyyy-mm-dd]: ");
 			scanf("%s", filename);
 			strcat(filename, ".txt");
 			read = fopen(filename, "r");
@@ -156,16 +156,16 @@ int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyy-mm-dd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿
 }
 
 
-// ±â·Ï ¼öÁ¤
+// ê¸°ë¡ ìˆ˜ì •
 int recordUpdate(void) {
 
 }
 
 
-// ±â·Ï »èÁ¦
-int recordDelete(void) {   // »èÁ¦¸¦ ¿øÇÏ´Â ÆÄÀÏÀÇ ³¯Â¥¸¦ yyyy-mm-dd Çü½ÄÀ¸·Î ¹Ş¾Æ »èÁ¦ ÇÑ´Ù.
+// ê¸°ë¡ ì‚­ì œ
+int recordDelete(void) {   // ì‚­ì œë¥¼ ì›í•˜ëŠ” íŒŒì¼ì˜ ë‚ ì§œë¥¼ yyyy-mm-dd í˜•ì‹ìœ¼ë¡œ ë°›ì•„ ì‚­ì œ í•œë‹¤.
 
-	printf("»èÁ¦ÇÏ°í ½ÍÀº ÆÄÀÏ yyyy-mm-dd·Î ÀÔ·ÂÇÏ½Ã¿À : ");
+	printf("ì‚­ì œí•˜ê³  ì‹¶ì€ íŒŒì¼ yyyy-mm-ddë¡œ ì…ë ¥í•˜ì‹œì˜¤ : ");
 	char filename[15];
 	int i = 0;
 
@@ -176,15 +176,15 @@ int recordDelete(void) {   // »èÁ¦¸¦ ¿øÇÏ´Â ÆÄÀÏÀÇ ³¯Â¥¸¦ yyyy-mm-dd Çü½ÄÀ¸·Î ¹Ş
 
 	if (nResult == 0)
 	{
-		printf("±â·Ï »èÁ¦ ¼º°ø \n");
+		printf("ê¸°ë¡ ì‚­ì œ ì„±ê³µ \n");
 	}
 	else if (nResult == -1)
 	{
-		perror("±â·Ï »èÁ¦ ½ÇÆĞ  \n");
+		perror("ê¸°ë¡ ì‚­ì œ ì‹¤íŒ¨  \n");
 	}
 
 	i++;
-	printf("¶Ç ´Ù¸¥ ³¯ÀÇ ±â·ÏÀ» »èÁ¦ÇÏ°í½Í³ª¿ä? ( ³× = 1 or ¾Æ´Ï¿À = 0 )");
+	printf("ë˜ ë‹¤ë¥¸ ë‚ ì˜ ê¸°ë¡ì„ ì‚­ì œí•˜ê³ ì‹¶ë‚˜ìš”? ( ë„¤ = 1 or ì•„ë‹ˆì˜¤ = 0 )");
 	while (i >= 0)
 	{
 		int yn = 0;
@@ -193,7 +193,7 @@ int recordDelete(void) {   // »èÁ¦¸¦ ¿øÇÏ´Â ÆÄÀÏÀÇ ³¯Â¥¸¦ yyyy-mm-dd Çü½ÄÀ¸·Î ¹Ş
 			break;
 		}
 		if (yn == 1) {
-			printf("»èÁ¦ÇÏ°í ½ÍÀº ÆÄÀÏ yyyy-mm-dd·Î ÀÔ·ÂÇÏ½Ã¿À : ");
+			printf("ì‚­ì œí•˜ê³  ì‹¶ì€ íŒŒì¼ yyyy-mm-ddë¡œ ì…ë ¥í•˜ì‹œì˜¤ : ");
 			char filename[15];
 			int i = 0;
 
@@ -204,11 +204,11 @@ int recordDelete(void) {   // »èÁ¦¸¦ ¿øÇÏ´Â ÆÄÀÏÀÇ ³¯Â¥¸¦ yyyy-mm-dd Çü½ÄÀ¸·Î ¹Ş
 
 			if (nResult == 0)
 			{
-				printf("±â·Ï »èÁ¦ ¼º°ø \n");
+				printf("ê¸°ë¡ ì‚­ì œ ì„±ê³µ \n");
 			}
 			else if (nResult == -1)
 			{
-				perror("±â·Ï »èÁ¦ ½ÇÆĞ  \n");
+				perror("ê¸°ë¡ ì‚­ì œ ì‹¤íŒ¨  \n");
 			}
 			break;
 		}
