@@ -19,6 +19,7 @@ int favorites(void) {
 		printf("%d\n", favoritesList[i]);
 	}
 
+	/*
 	printf("즐겨찾기 내용을 보고 싶나요?\n");
 
 	FILE* read;
@@ -38,13 +39,13 @@ int favorites(void) {
 	}
 
 	fclose(read);
-
+	*/
 	return 0;
 }
 
 
 
-
+/*
 void search(void) {
 
 	FILE* fp;
@@ -82,10 +83,10 @@ void search(void) {
 		fclose(fp);
 	}
 	
-
+	
 	
 }
-
+*/
 
 
 

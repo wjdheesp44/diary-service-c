@@ -27,7 +27,7 @@ int main(void) {
 		break;
 	case 3:
 		system("cls");
-		search();
+		//search();
 		break;
 	default:
 		printf("페이지 번호를 정확하게 입력해주세요\n");
