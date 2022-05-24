@@ -2,28 +2,38 @@
 #include<stdio.h>
 #include<Windows.h>
 #include "callendar.h"
+#include "favorites.h"
+
 
 
 int main(void) {
 
-	// 0. ë©”ë‰´ í˜ì´ì§€
+	// 0. ¸Ş´º ÆäÀÌÁö
 
 	int menuNum;
-	printf("1. ë‹¤ì´ì–´ë¦¬\n2. ì¦ê²¨ì°¾ê¸°\n\n");
-	printf("ë„˜ì–´ê°ˆ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");		scanf("%d", &menuNum);
+	printf("1. ´ÙÀÌ¾î¸®\n2. Áñ°ÜÃ£±â\n\n");
+	printf("³Ñ¾î°¥ ÆäÀÌÁö ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");		scanf("%d", &menuNum);
 
 
 	switch (menuNum) {
 	case 1:
 		system("cls");
-		callendar();		// 1. ë‹¤ì´ì–´ë¦¬ í˜ì´ì§€ë¡œ ì´ë™
+		callendar();		// 1. ´ÙÀÌ¾î¸® ÆäÀÌÁö·Î ÀÌµ¿
 		break;
-	// 2. ì¦ê²¨ì°¾ê¸° ë“¤ì–´ê°ˆ ì˜ˆì •
+		// 2. Áñ°ÜÃ£±â µé¾î°¥ ¿¹Á¤
+	case 2:
+		system("cls");
+		favorites();
+		break;
+	case 3:
+		system("cls");
+		search();
+		break;
 	default:
-		printf("í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì •í™•í•˜ê²Œ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
-		printf("ë„˜ì–´ê°ˆ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");		scanf("%d", &menuNum);
+		printf("ÆäÀÌÁö ¹øÈ£¸¦ Á¤È®ÇÏ°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
+		printf("³Ñ¾î°¥ ÆäÀÌÁö ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");		scanf("%d", &menuNum);
 	}
 
-	
+
 	return 0;
 }
