@@ -112,8 +112,42 @@ int recordRead(void) // 입력된 날짜 yyyymmdd.txt파일의 글자를 순서�
 
 
 // 기록 수정
-int recordUpdate(void) {
+int recordUpdate(void) { // 단어 A를 입력받아 단어 B로 변경한다.(단어만 변경 가능)
+	FILE* fp1, * fp2;
+	char file1[100], file2[100];
+	char buffer[100];
+	char name1[100], name2[100];
+	printf("첫번째 파일 이름과 변경하고싶은 단어 : ");
+	scanf("%s %s", file1, name1);
+	strcat(file1, ".txt");
+	printf("변경하고싶은 단어 : ");
+	scanf("%s", name2);
+	// 첫번째 파일을 읽기 모드로 연다.
+	if ((fp1 = fopen(file1, "r")) == NULL) {
+		fprintf(stderr, "파일 %s을 열 수 없습니다.\n", file1);
+		exit(1);
+	}
+	// 두번째 파일을 쓰기 모드로 연다.
+	if ((fp2 = fopen("temp.txt", "w")) == NULL) {
+		fprintf(stderr, "파일 %s을 열 수 없습니다.\n", "temp.txt");
+		exit(1);
+	}
+	// 첫번째 파일을 두번째 파일로 복사한다. 
+	while (fgets(buffer, 100, fp1) != NULL) {
+		char* pos = strtok(buffer, " ");
+		strcat(name2, " ");
+		while (pos != NULL) {
+			if (strcmp(name1, pos) == 0)
+				fprintf(fp2, name2); else
+				fprintf(fp2, "%s ", pos);
 
+			pos = strtok(NULL, " ");
+		}
+	}
+	fclose(fp1);
+	fclose(fp2);
+	remove(file1);
+	rename("temp.txt", file1);
 }
 
 
