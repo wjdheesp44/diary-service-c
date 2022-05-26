@@ -1,4 +1,4 @@
-#ifndef __FAVORITES_H__
+ï»¿#ifndef __FAVORITES_H__
 # define __FAVORITES_H__
 #pragma warning(disable:4996)
 #include <stdio.h>
@@ -20,14 +20,14 @@ int favorites(void) {
 	}
 
 	/*
-	printf("Áñ°ÜÃ£±â ³»¿ëÀ» º¸°í ½Í³ª¿ä?\n");
+	printf("ì¦ê²¨ì°¾ê¸° ë‚´ìš©ì„ ë³´ê³  ì‹¶ë‚˜ìš”?\n");
 
 	FILE* read;
 	char line[1000];
 	char line2[1000];
 	char filename[15];
 	int i = 0;
-	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyymmdd]: ");
+	printf("ì›í•˜ëŠ” ë…„, ì›”, ì¼ì„ ì…ë ¥í•˜ì‹œì˜¤ [yyyymmdd]: ");
 	scanf("%s", filename);
 	strcat(filename, ".txt");
 	read = fopen(filename, "r");
@@ -53,33 +53,33 @@ void search(void) {
 	int num = 0, pass = 0;
 	char numChar[100];
 
-	printf("°Ë»öÇÒ ´Ü¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");
+	printf("ê²€ìƒ‰í•  ë‹¨ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");
 	gets(ans);
 	
 	for (int i = 0; i < 100000000; i++) {
-		//ÆÄÀÏ¿­±â
-		// i Á¤¼ö¸¦ ¹®ÀÚ¿­·Î ¹Ù²ã¼­ ÇÕÃÄ¾ß ÇÔ
-		sprintf(numChar, "%d", i);	// Á¤¼ö¸¦ ¹®ÀÚ¿­·Î ¹Ù²Ş
-		//printf("%s", strcat(i, ".txt"));	³»ÀÏ ÇØ°á
+		//íŒŒì¼ì—´ê¸°
+		// i ì •ìˆ˜ë¥¼ ë¬¸ìì—´ë¡œ ë°”ê¿”ì„œ í•©ì³ì•¼ í•¨
+		sprintf(numChar, "%d", i);	// ì •ìˆ˜ë¥¼ ë¬¸ìì—´ë¡œ ë°”ê¿ˆ
+		//printf("%s", strcat(i, ".txt"));	ë‚´ì¼ í•´ê²°
 		fp = fopen(strcat(i, ".txt"), "r");
 		if (fp == NULL) {
-			printf("ÆÄÀÏ ÀĞ±â¸ğµå ¿­±â¿¡ ½ÇÆĞÇß½À´Ï´Ù");
+			printf("íŒŒì¼ ì½ê¸°ëª¨ë“œ ì—´ê¸°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤");
 			return -1;
 		}
 
-		//¹®ÀÚ¿­ °Ë»ö
+		//ë¬¸ìì—´ ê²€ìƒ‰
 		while (!feof(fp)) {
 			num++;
-			fgets(str, 100, fp);// str¿¡ ÇÑ Çà¾¿ ¹®ÀÚ¿­À» ÀÔ·Â¹Ş½À´Ï´Ù
+			fgets(str, 100, fp);// strì— í•œ í–‰ì”© ë¬¸ìì—´ì„ ì…ë ¥ë°›ìŠµë‹ˆë‹¤
 
 			if (strstr(str, ans) != NULL) {
-				printf("¹®ÀÚ¿­À» Ã£¾Ò½À´Ï´Ù.");
-				printf("%dÇà %s", num, str);
+				printf("ë¬¸ìì—´ì„ ì°¾ì•˜ìŠµë‹ˆë‹¤.");
+				printf("%dí–‰ %s", num, str);
 				pass++;
 			}
 		}
 
-		if (pass == 0) printf("¹®ÀÚ¿­À» Ã£À» ¼ö ¾ø½À´Ï´Ù");
+		if (pass == 0) printf("ë¬¸ìì—´ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
 		fclose(fp);
 	}
 	

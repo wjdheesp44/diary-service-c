@@ -1,4 +1,4 @@
-#ifndef __CRUD_H__
+ï»¿#ifndef __CRUD_H__
 # define __CRUD_H__
 #include <stdio.h>
 #include <time.h>
@@ -38,7 +38,7 @@ int crud(int crudNum) {
 		menu();
 		break;
 	default:
-		printf("¹øÈ£¸¦ Á¦´ë·Î ÀÔ·ÂÇØÁÖ¼¼¿ä:");
+		printf("ë²ˆí˜¸ë¥¼ ì œëŒ€ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”:");
 		static int recordNum;
 		scanf_s("%d", &recordNum);
 		crud(recordNum);
@@ -47,8 +47,8 @@ int crud(int crudNum) {
 }
 
 
-// ±â·Ï »ı¼º
-int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½ÇÇàÇÑ´Ù
+// ê¸°ë¡ ìƒì„±
+int recordCreat(void)  // ë¬¸ìì—´ì„ ì…ë ¥ ë°›ì•„ yyyy-mm-dd.txtíŒŒì¼ì„ ìƒì„±, ì“°ê¸°ë¥¼ ì‹¤í–‰í•œë‹¤
 {
 	int i = 0;
 
@@ -58,11 +58,11 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½
 	clock_t start, finish;
 	double duration;
 
-	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyymmdd]: ");
+	printf("ì›í•˜ëŠ” ë…„, ì›”, ì¼ì„ ì…ë ¥í•˜ì‹œì˜¤ [yyyymmdd]: ");
 	fflush(stdin);
 	scanf("%s", &filename);
 
-	int filenameFavorites = atoi(filename);		// ÆÄÀÏ¸í Á¤¼ö·Î º¯È¯
+	int filenameFavorites = atoi(filename);		// íŒŒì¼ëª… ì •ìˆ˜ë¡œ ë³€í™˜
 
 	strcat(filename, ".txt");
 	write = fopen(filename, "a+");
@@ -70,7 +70,7 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½
 	start = clock();
 
 
-	printf("±â·ÏÇÒ ³»¿ëÀ» ÀÔ·ÂÇÏ½Ã¿À(Á¾·áÇÏ·Á¸é Enter ÈÄ Ctrl + z ÀÔ·Â ÈÄ ´Ù½Ã Enter) : \n");
+	printf("ê¸°ë¡í•  ë‚´ìš©ì„ ì…ë ¥í•˜ì‹œì˜¤(ì¢…ë£Œí•˜ë ¤ë©´ Enter í›„ Ctrl + z ì…ë ¥ í›„ ë‹¤ì‹œ Enter) : \n");
 	while (fgets(str, sizeof(str), stdin) != NULL);
 	fputs(str, write);
 
@@ -79,79 +79,24 @@ int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½
 	duration = (double)(finish - start) / CLOCKS_PER_SEC;
 
 	if (duration > 5) {
-		favoritesList[filenameFavorites] = filenameFavorites;		// 5ÃÊº¸´Ù ¿À·¡ ÀÖÀ¸¸é Áñ°ÜÃ£±â Ãß°¡
+		favoritesList[filenameFavorites] = filenameFavorites;		// 5ì´ˆë³´ë‹¤ ì˜¤ë˜ ìˆìœ¼ë©´ ì¦ê²¨ì°¾ê¸° ì¶”ê°€
 	}
 
-	//printf("%.fºĞ %dÃÊ", duration / 60, (int)duration % 60);
-	//fprintf(write, "%.fºĞ %dÃÊ", duration / 60, (int)duration % 60);
+	//printf("%.fë¶„ %dì´ˆ", duration / 60, (int)duration % 60);
+	//fprintf(write, "%.fë¶„ %dì´ˆ", duration / 60, (int)duration % 60);
 
-	printf("\n¶Ç ´Ù¸¥ ³¯À» ±â·ÏÇÏ°í ½Í³ª¿ä? ( ³× = 1 or ¾Æ´Ï¿À = 0 )");
-
-	i++;
-
-	while (i >= 0) {
-		int yn;
-		scanf("%d", &yn);
-		if (yn == 0) {
-			break;
-		}
-		if (yn == 1) {
-			char str[1000];
-			char filename[15];
-			FILE* write;
-			clock_t start, finish;
-			double duration;
-
-			printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyymmdd]: ");
-			fflush(stdin);
-			scanf("%s", &filename);
-
-			int filenameFavorites = atoi(filename);		// ÆÄÀÏ¸í Á¤¼ö·Î º¯È¯
-
-			strcat(filename, ".txt");
-			write = fopen(filename, "a+");
-
-			start = clock();
-
-
-			printf("±â·ÏÇÒ ³»¿ëÀ» ÀÔ·ÂÇÏ½Ã¿À(Á¾·áÇÏ·Á¸é Enter ÈÄ Ctrl + z ÀÔ·Â ÈÄ ´Ù½Ã Enter) : \n");
-			while (fgets(str, sizeof(str), stdin) != NULL);
-			fputs(str, write);
-
-
-			finish = clock() - start;
-			duration = (double)(finish - start) / CLOCKS_PER_SEC;
-
-			if (duration > 5) {
-				favoritesList[filenameFavorites] = filenameFavorites;		// 5ÃÊº¸´Ù ¿À·¡ ÀÖÀ¸¸é Áñ°ÜÃ£±â Ãß°¡
-			}
-
-			//printf("%.fºĞ %dÃÊ", duration / 60, (int)duration % 60);
-			//fprintf(write, "%.fºĞ %dÃÊ", duration / 60, (int)duration % 60);
-
-
-			break;
-		}
-	}
 	fclose(write);
 }
 
-
-
-
-
-
-
-
-// ±â·Ï ÀĞ±â
-int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyymmdd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿¡ Ãâ·ÂÇÑ´Ù.
+// ê¸°ë¡ ì½ê¸°
+int recordRead(void) // ì…ë ¥ëœ ë‚ ì§œ yyyymmdd.txtíŒŒì¼ì˜ ê¸€ìë¥¼ ìˆœì„œëŒ€ë¡œ ë„íŠ¸ì°½ì— ì¶œë ¥í•œë‹¤.
 {
 	FILE* read;
 	char line[1000];
 	char line2[1000];
 	char filename[15];
 	int i = 0;
-	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyymmdd]: ");
+	printf("ì›í•˜ëŠ” ë…„, ì›”, ì¼ì„ ì…ë ¥í•˜ì‹œì˜¤ [yyyymmdd]: ");
 	scanf("%s", filename);
 	strcat(filename, ".txt");
 	read = fopen(filename, "r");
@@ -162,47 +107,20 @@ int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyymmdd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿¡ 
 		printf("%s", line);
 	}
 
-	printf("¶Ç ´Ù¸¥ ³¯ÀÇ ±â·ÏÀ» ÀĞ°í½Í³ª¿ä? ( ³× = 1 or ¾Æ´Ï¿À = 0 )");
-	i++;
-
-	while (i >= 0) {
-		int yn = 0;
-		scanf("%d", &yn);
-		if (yn == 0) {
-			break;
-		}
-		if (yn == 1) {
-			FILE* read;
-			char line[1000];
-			char line2[1000];
-			char filename[15];
-			printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyymmdd]: ");
-			scanf("%s", filename);
-			strcat(filename, ".txt");
-			read = fopen(filename, "r");
-			fflush(stdin);
-
-			while (fgets(line, 500, read) != NULL) {
-				sscanf(line, "%[^\n]", line2);
-				printf("%s", line);
-			}
-			break;
-		}
-	}
 	fclose(read);
 }
 
 
-// ±â·Ï ¼öÁ¤
+// ê¸°ë¡ ìˆ˜ì •
 int recordUpdate(void) {
 
 }
 
 
-// ±â·Ï »èÁ¦
-int recordDelete(void) {   // »èÁ¦¸¦ ¿øÇÏ´Â ÆÄÀÏÀÇ ³¯Â¥¸¦ yyyy-mm-dd Çü½ÄÀ¸·Î ¹Ş¾Æ »èÁ¦ ÇÑ´Ù.
+// ê¸°ë¡ ì‚­ì œ
+int recordDelete(void) {   // ì‚­ì œë¥¼ ì›í•˜ëŠ” íŒŒì¼ì˜ ë‚ ì§œë¥¼ yyyy-mm-dd í˜•ì‹ìœ¼ë¡œ ë°›ì•„ ì‚­ì œ í•œë‹¤.
 
-	printf("»èÁ¦ÇÏ°í ½ÍÀº ÆÄÀÏ yyyymmdd·Î ÀÔ·ÂÇÏ½Ã¿À : ");
+	printf("ì‚­ì œí•˜ê³  ì‹¶ì€ íŒŒì¼ yyyymmddë¡œ ì…ë ¥í•˜ì‹œì˜¤ : ");
 	char filename[15];
 	int i = 0;
 
@@ -213,65 +131,34 @@ int recordDelete(void) {   // »èÁ¦¸¦ ¿øÇÏ´Â ÆÄÀÏÀÇ ³¯Â¥¸¦ yyyy-mm-dd Çü½ÄÀ¸·Î ¹Ş
 
 	if (nResult == 0)
 	{
-		printf("±â·Ï »èÁ¦ ¼º°ø \n");
+		printf("ê¸°ë¡ ì‚­ì œ ì„±ê³µ \n");
 	}
 	else if (nResult == -1)
 	{
-		perror("±â·Ï »èÁ¦ ½ÇÆĞ  \n");
-	}
-
-	i++;
-	printf("¶Ç ´Ù¸¥ ³¯ÀÇ ±â·ÏÀ» »èÁ¦ÇÏ°í½Í³ª¿ä? ( ³× = 1 or ¾Æ´Ï¿À = 0 )");
-	while (i >= 0)
-	{
-		int yn = 0;
-		scanf("%d", &yn);
-		if (yn == 0) {
-			break;
-		}
-		if (yn == 1) {
-			printf("»èÁ¦ÇÏ°í ½ÍÀº ÆÄÀÏ yyyymmdd·Î ÀÔ·ÂÇÏ½Ã¿À : ");
-			char filename[15];
-			int i = 0;
-
-			scanf("%s", filename);
-			strcat(filename, ".txt");
-
-			int nResult = remove(filename);
-
-			if (nResult == 0)
-			{
-				printf("±â·Ï »èÁ¦ ¼º°ø \n");
-			}
-			else if (nResult == -1)
-			{
-				perror("±â·Ï »èÁ¦ ½ÇÆĞ  \n");
-			}
-			break;
-		}
+		perror("ê¸°ë¡ ì‚­ì œ ì‹¤íŒ¨  \n");
 	}
 }
 
 int menu(void) {
 
 	int menuNum;
-	printf("1. ´ÙÀÌ¾î¸®\n2. Áñ°ÜÃ£±â\n\n");
-	printf("³Ñ¾î°¥ ÆäÀÌÁö ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");		scanf("%d", &menuNum);
+	printf("1. ë‹¤ì´ì–´ë¦¬\n2. ì¦ê²¨ì°¾ê¸°\n\n");
+	printf("ë„˜ì–´ê°ˆ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");		scanf("%d", &menuNum);
 
 
 	switch (menuNum) {
 	case 1:
 		system("cls");
-		callendar();		// 1. ´ÙÀÌ¾î¸® ÆäÀÌÁö·Î ÀÌµ¿
+		callendar();		// 1. ë‹¤ì´ì–´ë¦¬ í˜ì´ì§€ë¡œ ì´ë™
 		break;
-		// 2. Áñ°ÜÃ£±â µé¾î°¥ ¿¹Á¤
+		// 2. ì¦ê²¨ì°¾ê¸° ë“¤ì–´ê°ˆ ì˜ˆì •
 	case 2:
 		system("cls");
 		favorites();
 		break;
 	default:
-		printf("ÆäÀÌÁö ¹øÈ£¸¦ Á¤È®ÇÏ°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
-		printf("³Ñ¾î°¥ ÆäÀÌÁö ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");		scanf("%d", &menuNum);
+		printf("í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì •í™•í•˜ê²Œ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
+		printf("ë„˜ì–´ê°ˆ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");		scanf("%d", &menuNum);
 	}
 }
 

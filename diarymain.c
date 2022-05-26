@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<Windows.h>
 #include "callendar.h"
@@ -8,19 +8,19 @@
 
 int main(void) {
 
-	// 0. ¸Ş´º ÆäÀÌÁö
+	// 0. ë©”ë‰´ í˜ì´ì§€
 
 	int menuNum;
-	printf("1. ´ÙÀÌ¾î¸®\n2. Áñ°ÜÃ£±â\n\n");
-	printf("³Ñ¾î°¥ ÆäÀÌÁö ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");		scanf("%d", &menuNum);
+	printf("1. ë‹¤ì´ì–´ë¦¬\n2. ì¦ê²¨ì°¾ê¸°\n\n");
+	printf("ë„˜ì–´ê°ˆ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");		scanf("%d", &menuNum);
 
 
 	switch (menuNum) {
 	case 1:
 		system("cls");
-		callendar();		// 1. ´ÙÀÌ¾î¸® ÆäÀÌÁö·Î ÀÌµ¿
+		callendar();		// 1. ë‹¤ì´ì–´ë¦¬ í˜ì´ì§€ë¡œ ì´ë™
 		break;
-		// 2. Áñ°ÜÃ£±â µé¾î°¥ ¿¹Á¤
+		// 2. ì¦ê²¨ì°¾ê¸° ë“¤ì–´ê°ˆ ì˜ˆì •
 	case 2:
 		system("cls");
 		favorites();
@@ -30,8 +30,8 @@ int main(void) {
 		//search();
 		break;
 	default:
-		printf("ÆäÀÌÁö ¹øÈ£¸¦ Á¤È®ÇÏ°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä\n");
-		printf("³Ñ¾î°¥ ÆäÀÌÁö ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");		scanf("%d", &menuNum);
+		printf("í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì •í™•í•˜ê²Œ ì…ë ¥í•´ì£¼ì„¸ìš”\n");
+		printf("ë„˜ì–´ê°ˆ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");		scanf("%d", &menuNum);
 	}
 
 
