@@ -18,7 +18,9 @@ int favorites(void) {
 		if (favoritesList[i] == NULL) {
 			continue;
 		}
+		printf("-----즐겨찾기 파일목록-----\n");
 		printf("%d\n", favoritesList[i]);
+		printf("---------------------------\n");
 	}
 	
 		printf("즐겨찾기 내용을 보고 싶나요?\n");

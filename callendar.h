@@ -122,7 +122,7 @@ int callendar(void) {
 	while ((ch = getchar()) != EOF)
 	{
 		int recordNum;
-		printf("  0. 종료 1. 기록 생성 2. 기록 읽기 3. 기록 수정 4. 기록 삭제 5. 메뉴로 돌아가기 \n\n  번호를 입력해주세요 : ");
+		printf("  0. 종료 1. 기록 생성 2. 기록 읽기 3. 기록 수정 4. 기록 삭제 5. 작성된 파일목록 6. 메뉴로 돌아가기 \n\n  번호를 입력해주세요 : ");
 		scanf("%d", &recordNum);
 		crud(recordNum);
 	}

@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "callendar.h"
 #include "favorites.h"
+#include "getfilelist.h"
 #define CLOCKS_PER_SEC 1000
 
 
@@ -35,6 +36,9 @@ int crud(int crudNum) {
 		recordDelete();
 		break;
 	case 5:
+		getfilelist();
+		break;
+	case 6:
 		system("cls");
 		menu();
 		break;
