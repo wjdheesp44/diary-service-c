@@ -50,7 +50,8 @@ int favorites(void) {
 		printf("%s", line);
 	}
 	fclose(read);
-
+	printf("\n\n");
+	menu();
 	return 0;
 }
 
