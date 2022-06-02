@@ -63,7 +63,6 @@ void search(void) {
 	printf("탐색할 단어: ");
 	scanf("%s", &s1.word);
 
-	printf("------------------------------------------------");
 
 
 	for (int i = 20000000; i < 21000000; i++) {	// 있는 파일에서 특정 단어 찾기
@@ -104,15 +103,15 @@ void search2(Search s1) {
 		count++;
 		if (strstr(buffer, s1.word) != NULL) {
 
-			printf("\n%d줄 : %s", count, buffer);
+			printf("\n%s - %d줄 : %s", s1.numChar, count, buffer);
 
 		}
+
 	}
 
-	printf("\n%s에서 발견\n", s1.numChar);
-	printf("------------------------------------------------");
 
 	fclose(fp);
+	printf("\n------------------------------------------------");
 
 	return 0;
 
