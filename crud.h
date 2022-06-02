@@ -1,20 +1,27 @@
 #ifndef __CRUD_H__
 # define __CRUD_H__
 #include <stdio.h>
+#include <time.h>
+#include <string.h>
+#include <stdlib.h>
 #include "callendar.h"
+#include "favorites.h"
+#define CLOCKS_PER_SEC 1000
+
 
 int recordCreat(void);
 int recordRead(void);
 int recordUpdate(void);
 int recordDelete(void);
-
-int crud(int crudNum);
-
-
+int menu(void);
 
 
 int crud(int crudNum) {
-	switch(crudNum) {
+
+
+	switch (crudNum) {
+	case 0:
+		exit(0);
 	case 1:
 		recordCreat();
 		break;
@@ -27,38 +34,142 @@ int crud(int crudNum) {
 	case 4:
 		recordDelete();
 		break;
-	
+	case 5:
+		system("cls");
+		menu();
+		break;
 	default:
-		printf("ë²ˆí˜¸ë¥¼ ì œëŒ€ë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”:"); 
-		int recordNum;
-		scanf("%d", &recordNum);
+		printf("¹øÈ£¸¦ Á¦´ë·Î ÀÔ·ÂÇØÁÖ¼¼¿ä:");
+		static int recordNum;
+		scanf_s("%d", &recordNum);
 		crud(recordNum);
+		break;
 	}
 }
 
 
-// ê¸°ë¡ ìƒì„±
-int recordCreat(void) {
+// ±â·Ï »ı¼º
+int recordCreat(void)  // ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ yyyy-mm-dd.txtÆÄÀÏÀ» »ı¼º, ¾²±â¸¦ ½ÇÇàÇÑ´Ù
+{
+	int i = 0;
 
-	return 0;
+	char str[1000];
+	char filename[15];
+	FILE* write;
+	clock_t start, finish;
+	double duration;
+
+	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyymmdd]: ");
+	fflush(stdin);
+	scanf("%s", &filename);
+
+	int filenameFavorites = atoi(filename);		// ÆÄÀÏ¸í Á¤¼ö·Î º¯È¯
+
+	strcat(filename, ".txt");
+	write = fopen(filename, "a+");
+
+	start = clock();
+
+
+	printf("±â·ÏÇÒ ³»¿ëÀ» ÀÔ·ÂÇÏ½Ã¿À(Á¾·áÇÏ·Á¸é Enter ÈÄ Ctrl + z ÀÔ·Â ÈÄ ´Ù½Ã Enter) : \n");
+	while (fgets(str, sizeof(str), stdin) != NULL);
+	fputs(str, write);
+
+
+	finish = clock();
+	duration = (double)(finish - start) / CLOCKS_PER_SEC;
+
+	if (duration > 5) {
+		favoritesList[filenameFavorites] = filenameFavorites;		// 5ÃÊº¸´Ù ¿À·¡ ÀÖÀ¸¸é Áñ°ÜÃ£±â Ãß°¡
+	}
+
+
+	fclose(write);
+}
+
+// ±â·Ï ÀĞ±â
+int recordRead(void) // ÀÔ·ÂµÈ ³¯Â¥ yyyymmdd.txtÆÄÀÏÀÇ ±ÛÀÚ¸¦ ¼ø¼­´ë·Î µµÆ®Ã¢¿¡ Ãâ·ÂÇÑ´Ù.
+{
+	FILE* read;
+	char line[1000];
+	char line2[1000];
+	char filename[15];
+	int i = 0;
+	printf("¿øÇÏ´Â ³â, ¿ù, ÀÏÀ» ÀÔ·ÂÇÏ½Ã¿À [yyyymmdd]: ");
+	scanf("%s", filename);
+	strcat(filename, ".txt");
+	read = fopen(filename, "r");
+	fflush(stdin);
+
+	while (fgets(line, 500, read) != NULL) {
+		sscanf(line, "%[^\n]", line2);
+		printf("%s", line);
+	}
+
+	fclose(read);
 }
 
 
-// ê¸°ë¡ ì½ê¸°
-int recordRead(void) {
-	return 0;
+// ±â·Ï ¼öÁ¤
+int recordUpdate(void) { // ´Ü¾î A¸¦ ÀÔ·Â¹Ş¾Æ ´Ü¾î B·Î º¯°æÇÑ´Ù.(´Ü¾î¸¸ º¯°æ °¡´É)
+	FILE* fp1, * fp2;
+	char file1[100], file2[100];
+	char buffer[100];
+	char name1[100], name2[100];
+	printf("Ã¹¹øÂ° ÆÄÀÏ ÀÌ¸§°ú º¯°æÇÏ°í½ÍÀº ´Ü¾î : ");
+	scanf("%s %s", file1, name1);
+	strcat(file1, ".txt");
+	printf("º¯°æÇÏ°í½ÍÀº ´Ü¾î : ");
+	scanf("%s", name2);
+	// Ã¹¹øÂ° ÆÄÀÏÀ» ÀĞ±â ¸ğµå·Î ¿¬´Ù.
+	if ((fp1 = fopen(file1, "r")) == NULL) {
+		fprintf(stderr, "ÆÄÀÏ %sÀ» ¿­ ¼ö ¾ø½À´Ï´Ù.\n", file1);
+		exit(1);
+	}
+	// µÎ¹øÂ° ÆÄÀÏÀ» ¾²±â ¸ğµå·Î ¿¬´Ù.
+	if ((fp2 = fopen("temp.txt", "w")) == NULL) {
+		fprintf(stderr, "ÆÄÀÏ %sÀ» ¿­ ¼ö ¾ø½À´Ï´Ù.\n", "temp.txt");
+		exit(1);
+	}
+	// Ã¹¹øÂ° ÆÄÀÏÀ» µÎ¹øÂ° ÆÄÀÏ·Î º¹»çÇÑ´Ù. 
+	while (fgets(buffer, 100, fp1) != NULL) {
+		char* pos = strtok(buffer, " ");
+		strcat(name2, " ");
+		while (pos != NULL) {
+			if (strcmp(name1, pos) == 0)
+				fprintf(fp2, name2); else
+				fprintf(fp2, "%s ", pos);
+
+			pos = strtok(NULL, " ");
+		}
+	}
+	fclose(fp1);
+	fclose(fp2);
+	remove(file1);
+	rename("temp.txt", file1);
 }
 
+// ±â·Ï »èÁ¦
+int recordDelete(void) {   // »èÁ¦¸¦ ¿øÇÏ´Â ÆÄÀÏÀÇ ³¯Â¥¸¦ yyyy-mm-dd Çü½ÄÀ¸·Î ¹Ş¾Æ »èÁ¦ ÇÑ´Ù.
 
-// ê¸°ë¡ ìˆ˜ì •
-int recordUpdate(void) {
-	return 0;
+	printf("»èÁ¦ÇÏ°í ½ÍÀº ÆÄÀÏ yyyymmdd·Î ÀÔ·ÂÇÏ½Ã¿À : ");
+	char filename[15];
+	int i = 0;
+
+	scanf("%s", filename);
+	strcat(filename, ".txt");
+
+	int nResult = remove(filename);
+
+	if (nResult == 0)
+	{
+		printf("±â·Ï »èÁ¦ ¼º°ø \n");
+	}
+	else if (nResult == -1)
+	{
+		perror("±â·Ï »èÁ¦ ½ÇÆĞ  \n");
+	}
 }
 
-
-// ê¸°ë¡ ì‚­ì œ
-int recordDelete(void) {
-	return 0;
-}
 
 #endif
